@@ -1,0 +1,264 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Tahoma";
+}
+
+
+html, body{
+
+  height: 100%;
+}
+
+#root{
+
+  height: 100%;
+}
+
+.container{
+
+  min-height: 100%;
+
+}
+
+.not-found{
+
+  
+  display: flex;
+  flex-direction: column;
+  padding-top: 200px;
+  align-items: center;
+
+}
+
+.not-found h1{
+
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.not-found a{
+
+  text-decoration: none;
+  color: black;
+}
+
+nav {
+
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  align-items: center;
+  padding-inline: 5rem;
+  background-color: black;
+  color: white;
+  margin-bottom: 50px;
+}
+
+nav > h3{
+
+  flex-grow: 2;
+}
+
+
+nav > ul {
+
+   list-style-type: none;
+   display: flex;
+   flex-grow: 3;
+   justify-content: space-evenly;
+
+}
+
+
+nav > ul li a {
+
+  text-decoration: none;
+  color: white;
+}
+
+a{
+
+  text-decoration: none;
+  color: black;
+}
+
+/* Register-form */
+.register-form {
+
+   width: 75%;
+
+   margin-inline: auto;
+   display: flex;
+   flex-direction: column;
+   padding-top: 200px;
+   height: 100%;
+   align-items: center;
+   gap: 1.5rem;
+   font-size: 20px;
+
+
+}
+
+.input-section {
+
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    
+}
+
+.input-section input{
+
+  height: 50px;
+  width: 400px;
+  padding-left: 10px;
+  /* padding-inline: 5px; */
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  transition: all 300ms ease-in-out 200ms;
+
+
+}
+.input-section input:hover{
+
+    box-shadow: 3px 7px 25px lightgrey;
+}
+
+.input-section input:focus{
+
+  box-shadow: 3px 7px 25px lightgrey;
+}
+
+.register-button {
+
+  padding: 10px;
+  background-color: black;
+  outline: none;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+
+}
+
+/* Add Button */
+.add-button {
+
+  padding: 10px;
+  background-color: black;
+  outline: none;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 200px;
+  margin-top: 400px;
+
+}
+
+.register-button:hover{
+
+   box-shadow: 3px 7px 25px lightgrey;
+}
+
+.home {
+
+
+    height: 100dvh;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.sidebar{
+
+  flex-grow: 3;
+  /* background-color: black;
+  color: white; */
+  height: 100%;
+  text-align: center;
+  padding-top: 5rem;
+  border-right: 3px solid grey;
+  position: relative;
+  z-index: 5
+  
+}
+
+.sidebar > p{
+
+    margin-bottom: 2rem;
+    
+}
+
+.note-creator {
+
+  flex-grow: 5;
+  padding-inline: 4rem;
+
+}
+
+
+.title {
+
+    border: none;
+    outline: none;
+    font-size: 30px;
+    display: block;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+/* Toast Notification CSS */
+.success-message {
+
+
+  color: green;
+  
+  
+  
+}
+
+.error-message {
+
+  color: red;
+}
+
+
+.link-button {
+
+
+  border: none;
+  outline: none;
+  background-color: white;
+  margin-top: 2rem;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+
+.option-paragraph {
+
+
+  padding-left: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+
+}
+
+.option-paragraph:hover{
+
+    background-color: lightgrey;
+    padding-block: 4px;
+
+}
