@@ -89,7 +89,6 @@ a{
 .register-form {
 
    width: 75%;
-
    margin-inline: auto;
    display: flex;
    flex-direction: column;
@@ -260,5 +259,29 @@ a{
 
     background-color: lightgrey;
     padding-block: 4px;
+
+}
+
+
+/* Responsiveness for mobile */
+@media screen and (max-width:500px){
+
+
+   .register-form {
+
+      padding: 7px;
+   }
+
+
+  .input-section input {
+
+    width: 100%;
+   }
+
+
+   .register-button {
+
+      width: 100%;
+   }
 
 }
