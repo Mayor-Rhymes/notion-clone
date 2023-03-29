@@ -6,7 +6,7 @@ import { Props } from './UserContextProvider';
 
 const initialState: Iinit = {
 
-    notes: null,
+    notes: [],
     total: 0,
 
 }
@@ -60,7 +60,7 @@ const NoteReducer = (state: Iinit, action: NoteAction ) => {
             return {
 
                 ...state, 
-                notes: state.notes === null ? [action.note] : [...state.notes, action.note],
+                notes: [...state.notes, action.note],
                 total: state.notes.length
             };
 
@@ -89,7 +89,7 @@ const NoteReducer = (state: Iinit, action: NoteAction ) => {
             return {
 
                 ...state, 
-                notes: null, 
+                notes: [], 
                 total: 0,
             };
             
