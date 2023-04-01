@@ -1,0 +1,45 @@
+export const modules = {
+    toolbar: [
+      [{ font: [1] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [
+        {
+          color: [
+            "white",
+            "blue",
+            "black",
+            "grey",
+            "orange",
+            "coral",
+            "green",
+            "brown",
+            "purple",
+            "lightblue",
+          ],
+        },
+        {
+          background: [
+            "white",
+            "blue",
+            "black",
+            "grey",
+            "orange",
+            "coral",
+            "green",
+            "brown",
+            "purple",
+            "lightblue",
+          ],
+        },
+      ],
+      [{ script: "sub" }, { script: "super" }],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ align: ["right", "center", "justify"] }],
+      ["link", "image", "video"],
+      ["clean"],
+      [{ size: ["small", false, "large", "huge"] }],
+    ],
+  };

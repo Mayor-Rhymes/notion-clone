@@ -1,30 +1,17 @@
-import { useNavigate, Navigate } from "react-router-dom"
+import { useNavigate, Navigate, Outlet } from "react-router-dom";
 import { useUserContext } from "../hooks/useUserContext";
-import React from "react"
-
-
+import React from "react";
+import App from "../App";
 
 interface Props {
-
-
-    children?: React.ReactElement;
+  children?: React.ReactElement;
 }
 
-const ProtectedRoute = ({children}: Props) => {
+const ProtectedRoute = () => {
+  if (!localStorage.getItem("user")) {
+    return <Navigate to="/login" />;
+  }
+  return <App />;
+};
 
-    const {user} = useUserContext();
-    const navigate = useNavigate();
-
-
-
-    if (!user) {
-
-       return <Navigate to="/login" />
-    } else {
-
-        return children;
-    }
-
-}
-
-export default ProtectedRoute
+export default ProtectedRoute;

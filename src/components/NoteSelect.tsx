@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 interface Props {
 
-    handleDelete: (id: string) => void;
-    handleView: (id: string) => void;
+    deleteNote: (id: string) => void;
+    viewNote: (note: INote) => void;
     note: INote;
 }
 
 
-const NoteSelect = ({handleDelete, note, handleView}: Props) => {
+const NoteSelect = ({deleteNote, note, viewNote}: Props) => {
    
     const [visible, setVisible] = useState(false)
 
@@ -59,8 +59,8 @@ const NoteSelect = ({handleDelete, note, handleView}: Props) => {
              >
 
 
-                <p className="option-paragraph" onClick={() => handleDelete(note._id)}>Delete</p>
-                <p className="option-paragraph" onClick={() => handleView(note._id)}>View</p>
+                <p className="option-paragraph" onClick={() => deleteNote(note._id)}>Delete</p>
+                <p className="option-paragraph" onClick={() => viewNote(note)}>View</p>
 
                 
 
