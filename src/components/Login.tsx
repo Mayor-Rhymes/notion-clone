@@ -1,52 +1,29 @@
-import { object, string, number, date, InferType } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../hooks/useUserContext";
-import Axios, { AxiosError } from "axios";
+import Axios from "axios";
+
+interface LoginState {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-//   const { user, dispatch } = useUserContext();
-
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // const errorStyle = {
-
-  //     color: 'red',
-  //     fontSize: '15px',
-  //  }
-
-  // let userSchema = object({
-
-  //     email: string().email().required(),
-  //     password: string().required(),
-
-  // }).required();
-
-  // const { register, handleSubmit, watch, formState: {errors, isSubmitting} } = useForm({
-  //     resolver: yupResolver(userSchema),
-  //     defaultValues: {
-  //         email: "",
-  //         password: "",
-  //     }
-  // });
+  const [loginState, setLoginState] = useState<LoginState>({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    if (email && password) {
+    if (loginState.email && loginState.password) {
       try {
         const response = await Axios.post(
           "http://localhost:4000/api/v1/user/login",
-          {
-            email,
-            password,
-          }
+          loginState
         );
 
         const result = response.data;
@@ -68,34 +45,38 @@ const Login = () => {
     }
   };
 
+  const handleChange = (key: string, value: string) => {
+    setLoginState({ ...loginState, [key]: value });
+  };
+
   return (
     <form className="register-form" onSubmit={handleSubmit}>
       <h3 style={{ textAlign: "center" }}>Login</h3>
 
       <section className="input-section">
         <label htmlFor="email">Email</label>
-        
+
         <input
           type="email"
           id="email"
           placeholder="Enter your email"
           name="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          value={loginState.email}
+          onChange={(event) => handleChange("email", event.target.value)}
           required={true}
         />
       </section>
 
       <section className="input-section">
         <label htmlFor="password">Password</label>
-        
+
         <input
           type="password"
           id="password"
           placeholder="Enter your password"
           name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          value={loginState.password}
+          onChange={(event) => handleChange("password", event.target.value)}
           required={true}
         />
       </section>

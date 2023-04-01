@@ -1,5 +1,4 @@
 import { useNavigate, Navigate, Outlet } from "react-router-dom";
-import { useUserContext } from "../hooks/useUserContext";
 import React from "react";
 import App from "../App";
 

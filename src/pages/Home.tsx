@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.bubble.css";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNotesContext } from "../hooks/useNotesContext";
-import { useUserContext } from "../hooks/useUserContext";
 import Axios from "axios";
 import NoteSelect from "../components/NoteSelect";
 import { AiFillPlusCircle } from "react-icons/ai";
@@ -17,17 +15,18 @@ export interface INote {
   content: string;
 }
 
-//function test
 
 const Home = () => {
   const { notes, dispatch } = useNotesContext();
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  
   const [id, setId] = useState("");
 
-  const [selectedNote, setSelectedNote] = useState<INote>({title: "", content:""} as INote);
+  const [selectedNote, setSelectedNote] = useState<INote>({
+    title: "",
+    content: "",
+  } as INote);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -46,9 +45,8 @@ const Home = () => {
   };
 
   const saveNewNote = async () => {
-    
-      try {
-        if (selectedNote.title && selectedNote.content) {
+    try {
+      if (selectedNote.title && selectedNote.content) {
         const response = await Axios.post(
           "http://localhost:4000/api/v1/notes/",
           selectedNote,
@@ -59,20 +57,20 @@ const Home = () => {
           }
         );
 
-        const result = response.data;
-        console.log(result);
-        setSelectedNote(() => ({title: "", content: ""} as INote));
+        const { note } = response.data;
+
         dispatch({
           type: "ADDNOTE",
-          note: { _id: result.note._id, title: result.note.title, content: result.note.content },
+          note: { _id: note._id, title: note.title, content: note.content },
         });
 
-        // addNewNote();
-       }
-      } catch (err) {
-        console.log(err);
+        setSelectedNote(() => ({ title: "", content: "" } as INote));
       }
-    
+    } catch (err) {
+      toast.error("Note could not be created", {
+        className: "error-message"
+      })
+    }
   };
 
   const deleteNote = async (id: string) => {
@@ -86,7 +84,7 @@ const Home = () => {
         }
       );
 
-      const result = response.data;
+      
       dispatch({ type: "REMOVENOTE", id: id });
 
       toast.success("Note has been successfully removed", {
@@ -100,15 +98,12 @@ const Home = () => {
   };
 
   const viewNote = async (note: INote) => {
-    
     setIsEditing(true);
     setSelectedNote(note);
     setId(note._id);
-    console.log(id);
   };
 
   const editNote = async (id: string) => {
-    
     try {
       const response = await Axios.patch(
         `http://localhost:4000/api/v1/notes/${id}`,
@@ -123,12 +118,10 @@ const Home = () => {
 
       const result = response.data;
       dispatch({ type: "HANDLENOTEUPDATE", id: id, note: result });
-
+      
       toast.success("Note has been successfully updated", {
         className: "success-message",
       });
-
-    //   setIsEditing(false);
     } catch (err) {
       toast.error("Something went wrong", {
         className: "error-message",
@@ -137,39 +130,23 @@ const Home = () => {
   };
 
   const addNewNote = () => {
-    
-    
-
     setIsEditing(false);
-    setSelectedNote(() => ({title: "", content: ""} as INote));
+    setSelectedNote(() => ({ title: "", content: "" } as INote));
     setId("");
-    
     console.log("title", selectedNote.title);
-    
-
-
-
   };
 
-
   const handleChange = (key: string, value: string) => {
-
-       setSelectedNote({...selectedNote, [key]: value})
-
-  }
-
+    setSelectedNote({ ...selectedNote, [key]: value });
+  };
 
   
-  console.log(notes);
 
   useEffect(() => {
-    
-      fetchNotes();
-      
-    
+    fetchNotes();
   }, []);
 
-  console.log(notes);
+  
 
   return (
     <div className="home">
@@ -186,26 +163,24 @@ const Home = () => {
 
         {/* <button onClick={addNewNote}>Add New</button> */}
         <AiFillPlusCircle onClick={addNewNote} style={{ fontSize: "30px" }} />
-
       </div>
 
       {/* notecreator */}
       <div className="note-creator">
-
         <h1>{selectedNote.title}</h1>
 
         {/* <h2>{test}</h2> */}
 
-        
         <input
           type="text"
           id="title"
           name="title"
           placeholder="Enter title"
           className="title"
-          value={selectedNote?.title}
-          onChange={(event) => {handleChange("title", event.target.value)}}
-          
+          value={selectedNote.title}
+          onChange={(event) => {
+            handleChange("title", event.target.value);
+          }}
         />
 
         <ReactQuill
@@ -213,9 +188,6 @@ const Home = () => {
           style={{ border: "none", fontSize: "30px" }}
           theme="snow"
           value={selectedNote.content}
-          onChange={(value) =>
-            setSelectedNote({ ...selectedNote, content: value })
-          }
           placeholder="Add your content here..."
           className="editor"
         />

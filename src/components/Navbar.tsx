@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch({ type: "REMOVENOTES" });
     localStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
 
   return (

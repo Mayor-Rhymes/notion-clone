@@ -1,5 +1,10 @@
-import { createContext, useEffect, useReducer, ReactElement } from "react";
-import { Props } from "./UserContextProvider";
+import { createContext, useReducer, ReactElement } from "react";
+
+
+interface Props {
+
+    children: ReactElement;
+}
 
 const initialState: Iinit = {
   notes: [],

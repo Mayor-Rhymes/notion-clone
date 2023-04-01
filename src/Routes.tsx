@@ -10,8 +10,8 @@ const Routes = (
   <Route errorElement={<h1>Error</h1>}>
     <Route path="*" element={<NotFound />} />
     <Route element={<ProtectedRoute />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<div>About</div>} />
+      <Route index element={<Home />} />
+      <Route path="about" element={<div>About</div>} />
     </Route>
     <Route path="register" element={<Register />} />
     <Route path="login" element={<Login />} />
